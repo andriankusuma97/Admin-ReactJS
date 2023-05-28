@@ -15,7 +15,7 @@ import { CgLogOut } from "react-icons/cg";
 
 export default function Footer() {
   return (
-    <Row className="p-2 py-3 bg-white border border-1">
+    <Row className="p-2 mb-0 py-3 bg-white border border-1">
       <footer className="py-1 my-1 bg-white">
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item">

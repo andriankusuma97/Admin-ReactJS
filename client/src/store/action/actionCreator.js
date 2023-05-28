@@ -27,8 +27,8 @@ export function fetchDataProduct() {
       }
       const data = await response.json();
       // setNews(data);
-      // console.log(data, "<<<<<<dari client side");
-      dispatch(fetchProductSucces(data.products.slice(0,10)))
+      console.log(data, "<<<<<<dari client side");
+      dispatch(fetchProductSucces(data.reverse()))
     } catch (error) {
       console.log(error);
     } finally {
@@ -36,6 +36,80 @@ export function fetchDataProduct() {
     }
   }
 }
+
+export function addProduct(product) {
+
+  return async (dispatch,getState)=>{
+    try {
+      const response = await fetch(BASE_URL + "/products",{
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      }
+      );
+      if (!response.ok) {
+        throw await response.text();
+      }
+      const data = await response.json();
+      // setNews(data);
+      console.log(data, "<<<<<<add New POst");
+      // dispatch(fetchProductSucces(data))
+    } catch (error) {
+      console.log(error);
+    } finally {
+      // setLoading(false);
+    }
+  }
+}
+export function editeProduct(product,id) {
+
+  return async (dispatch,getState)=>{
+    try {
+      const response = await fetch(BASE_URL + "/products/"+id,{
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      }
+      );
+      if (!response.ok) {
+        throw await response.text();
+      }
+      const data = await response.json();
+      // setNews(data);
+      console.log(data, "<<<<<<edite Product");
+      // dispatch(fetchProductSucces(data))
+    } catch (error) {
+      console.log(error);
+    } finally {
+      // setLoading(false);
+    }
+  }
+}
+
+export function deleteProduct(id) {
+
+  return async (dispatch,getState)=>{
+    try {
+      const response = await fetch(BASE_URL + "/products/"+id,{
+        method: 'DELETE',
+      }
+      );
+      if (!response.ok) {
+        throw await response.text();
+      }
+      const data = await response.json();
+      // setNews(data);
+      console.log(data, "<<<<<<delete success");
+      // dispatch(fetchProductSucces(data))
+    } catch (error) {
+      console.log(error);
+    } finally {
+      // setLoading(false);
+    }
+  }
+}
+
+
 
 export function fetchDetailProduct(id) {
 
