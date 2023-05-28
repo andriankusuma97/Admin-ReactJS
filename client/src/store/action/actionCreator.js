@@ -1,24 +1,24 @@
-import { BASE_URL, FETCH_NEWS,FETCH_DETAIL_NEWS } from "./actionType";
+import { BASE_URL, FETCH_PRODUCT,FETCH_DETAIL_PRODUCT } from "./actionType";
 
-export function  fetchNewsSucces (payload) {
+export function  fetchProductSucces (payload) {
   return {
-    type: FETCH_NEWS,
+    type: FETCH_PRODUCT,
     payload,
   }
 }
-export function  fetchDetailNewsSucces (payload) {
+export function  fetchDetailProductSucces (payload) {
   return {
-    type: FETCH_DETAIL_NEWS,
+    type: FETCH_DETAIL_PRODUCT,
     payload,
   }
 }
 
 
-export function fetchData() {
+export function fetchDataProduct() {
 
   return async (dispatch,getState)=>{
     try {
-      const response = await fetch(BASE_URL + "/customer/post",{
+      const response = await fetch(BASE_URL + "/products",{
         
       }
       );
@@ -28,7 +28,7 @@ export function fetchData() {
       const data = await response.json();
       // setNews(data);
       // console.log(data, "<<<<<<dari client side");
-      dispatch(fetchNewsSucces(data))
+      dispatch(fetchProductSucces(data.products.slice(0,10)))
     } catch (error) {
       console.log(error);
     } finally {
@@ -37,7 +37,7 @@ export function fetchData() {
   }
 }
 
-export function fetchDetailNews(id) {
+export function fetchDetailProduct(id) {
 
   return async (dispatch,getState)=>{
 
@@ -49,7 +49,7 @@ export function fetchDetailNews(id) {
       const data = await response.json();
       // setNews(data);
       console.log(data, "<<<<<<dari client side");
-      dispatch(fetchDetailNewsSucces(data))
+      dispatch(fetchDetailProductSucces(data))
     } catch (error) {
       console.log(error);
     } finally {
