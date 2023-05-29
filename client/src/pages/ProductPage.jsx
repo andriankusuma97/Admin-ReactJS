@@ -2,22 +2,11 @@ import React from 'react'
 import RowProduct from '../components/RowProduct'
 import {
   Button,
-  Container,
-  Row,
-  Col,
-  Nav,
-  Stack,
-  Dropdown,
-  Form,
   Table,
-  Modal
 } from "react-bootstrap";
-import { RiDashboardLine } from "react-icons/ri";
-import { CgLogOut } from "react-icons/cg";
 import { fetchDataProduct } from '../store/action/actionCreator';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FormAdd from '../components/FormAdd';
 import ModalAdd from '../components/ModalAdd';
 
 
@@ -28,7 +17,6 @@ export default function ProductPage() {
   })
 
   const dispatch = useDispatch()
-  // console.log(product,"<<<< dari page")
 
   const [show, setShow] = useState(false);
 
@@ -36,7 +24,6 @@ export default function ProductPage() {
 
   const handleAddProduct = (e)=>{
     e.preventDefault()
-    console.log("masukk sini")
     setShow(true)
   }
 
@@ -55,6 +42,7 @@ export default function ProductPage() {
     <thead >
       <tr className="text-center bg-dark text-white py-3  px-3">
         <th className='px-2'>#</th>
+        <th className='px-2'> Image </th>
         <th className='px-2'>Title</th>
         <th className='px-2'>Description</th>
         <th className='px-3'>Stock</th>

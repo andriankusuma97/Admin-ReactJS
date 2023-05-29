@@ -1,16 +1,4 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Nav,
-  Stack,
-  Dropdown,
-  Form,
-  Table,
-  Alert,
-} from "react-bootstrap";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiPencil } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +16,6 @@ export default function RowProduct({ data, idx }) {
   const handleEditeProduct = async(e) => {
     try {
       e.preventDefault();
-      console.log("masukk sini");
       await dispatch(fetchDataProduct())
       setShow(true);
     } catch (error) {
@@ -39,7 +26,6 @@ export default function RowProduct({ data, idx }) {
   const handleDelete = async (e) => {
     try {
       e.preventDefault();
-      console.log("masuk sini ");
       await dispatch(deleteProduct(data.id));
       navigate("/product");
       dispatch(fetchDataProduct())
@@ -52,6 +38,10 @@ export default function RowProduct({ data, idx }) {
     <>
       <tr className=" py-3">
         <td className="text-center py-4">{idx + 1}</td>
+        <td className="text-center py-4">
+        <img src={data?.images} width={"30px"} height={"50px"} className="w-100 rounded-4 shadow-4"
+          alt="" />
+        </td>
         <td className="px-3  py-4 ">{data?.title}</td>
         <td className="align-self-center">{data?.description}</td>
         <td className="text-center py-4">{data?.stock}</td>

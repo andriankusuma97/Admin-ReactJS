@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import DashboardPage from "../pages/DashboardPage";
 import ProductPage from "../pages/ProductPage";
-import ProfilePage from "../pages/ProfilePage";
 import Layout from "../components/Layout";
+import RegisterPage from "../pages/RegisterPage";
+import AccountPage from "../pages/AccountPage";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +20,8 @@ const router = createBrowserRouter([
         element: <ProductPage />,
       },
       {
-        path: "/profile",
-        element: <ProfilePage />,
+        path: "/account",
+        element: <AccountPage />,
       },
     
     ],
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path:"/login",
     element: <LoginPage /> ,
+  },
+  {
+    path:"/register",
+    element: <RegisterPage /> ,
   }
 ]);
 

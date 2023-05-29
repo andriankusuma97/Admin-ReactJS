@@ -1,17 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Nav,
-  Stack,
-  Dropdown,
-  Form,
-  Table,
-} from "react-bootstrap";
-import { RiDashboardLine } from "react-icons/ri";
-import { CgLogOut } from "react-icons/cg";
+import { Row } from "react-bootstrap";
 
 export default function Footer() {
   return (

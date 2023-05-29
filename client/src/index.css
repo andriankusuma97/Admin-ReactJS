@@ -1,0 +1,5 @@
+.hover:hover {
+  /* Gaya khusus yang ingin Anda terapkan saat elemen dihover */
+  /* Contoh: mengubah warna latar belakang saat dihover */
+  background-color: hsla(195, 83%, 58%, 0.3);
+}

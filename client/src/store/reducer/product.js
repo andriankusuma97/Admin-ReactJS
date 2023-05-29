@@ -1,11 +1,10 @@
-import {  FETCH_PRODUCT,FETCH_DETAIL_PRODUCT } from "../action/actionType";
+import {  FETCH_PRODUCT } from "../action/actionType";
 
 const initialState ={
   product:[],
   loading: true
 };
 const productReducer = (state = initialState, action)=>{
-  console.log(action)
   switch (action.type) {
     case FETCH_PRODUCT:
       return {

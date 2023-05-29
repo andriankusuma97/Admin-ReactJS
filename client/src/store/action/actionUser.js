@@ -1,26 +1,20 @@
-import { BASE_URL, FETCH_PRODUCT,FETCH_DETAIL_PRODUCT } from "./actionType";
+import { BASE_URL, FETCH_USER } from "./actionType";
 import Swal from 'sweetalert2'
 
 
-export function  fetchProductSucces (payload) {
+export function  fetchUserSucces (payload) {
   return {
-    type: FETCH_PRODUCT,
-    payload,
-  }
-}
-export function  fetchDetailProductSucces (payload) {
-  return {
-    type: FETCH_DETAIL_PRODUCT,
+    type: FETCH_USER,
     payload,
   }
 }
 
 
-export function fetchDataProduct() {
+export function fetchDataUser() {
 
   return async (dispatch,getState)=>{
     try {
-      const response = await fetch(BASE_URL + "/products",{
+      const response = await fetch(BASE_URL + "/users",{
         
       }
       );
@@ -28,18 +22,18 @@ export function fetchDataProduct() {
         throw await response.text();
       }
       const data = await response.json();
-      dispatch(fetchProductSucces(data.reverse()))
+      dispatch(fetchUserSucces(data.reverse()))
     } catch (error) {
       console.log(error);
     } 
   }
 }
 
-export function addProduct(product) {
+export function addUser(product) {
 
   return async (dispatch,getState)=>{
     try {
-      const response = await fetch(BASE_URL + "/products",{
+      const response = await fetch(BASE_URL + "/users",{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(product)
@@ -63,14 +57,14 @@ export function addProduct(product) {
     } 
   }
 }
-export function editeProduct(product,id) {
+export function editeUser(user,id) {
 
   return async (dispatch,getState)=>{
     try {
-      const response = await fetch(BASE_URL + "/products/"+id,{
+      const response = await fetch(BASE_URL + "/users/"+id,{
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(product)
+        body: JSON.stringify(user)
       }
       );
       if (!response.ok) {
@@ -90,13 +84,13 @@ export function editeProduct(product,id) {
   }
 }
 
-export function deleteProduct(id) {
+export function deleteUser(id) {
 
   return async (dispatch,getState)=>{
     try {
       await Swal.fire({
         title: 'Are you sure?',
-        text: "You want to Delete Product?",
+        text: "You want to Delete user?",
         icon: 'question',
         confirmButtonText: 'Yes!',
         showCancelButton: true,
@@ -105,7 +99,7 @@ export function deleteProduct(id) {
         reverseButtons:true
       }).then(async (result) => {
         if(result.isConfirmed){
-          const response = await fetch(BASE_URL + "/products/"+id,{
+          const response = await fetch(BASE_URL + "/users/"+id,{
             method: 'DELETE',
           }
           );
@@ -126,4 +120,5 @@ export function deleteProduct(id) {
     } 
   }
 }
+
 

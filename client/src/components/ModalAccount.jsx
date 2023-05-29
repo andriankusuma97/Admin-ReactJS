@@ -1,55 +1,46 @@
 import React from "react";
-import {
-  Button,
-  Form,
-  Modal,
-} from "react-bootstrap";
-import {
-  editeProduct,
-  addProduct,
-  fetchDataProduct,
-} from "../store/action/actionCreator";
+import { Button, Form, Modal } from "react-bootstrap";
+import { addUser, editeUser, fetchDataUser } from "../store/action/actionUser";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function ModalAdd({ dataProduct = "", show, onHide }) {
+export default function ModalAddAccount({ dataAccount = "", show, onHide }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [product, setProduct] = useState({
-    title: dataProduct.title,
-    description: dataProduct.description,
-    price: dataProduct.price,
-    stock: dataProduct.stock,
-    images: dataProduct.images,
+  const [Account, setAccount] = useState({
+    firstName: dataAccount.firstName,
+    lastName: dataAccount.lastName,
+    email: dataAccount.email,
+    phone: dataAccount.phone,
+    password: dataAccount.password,
   });
 
   function handleChange(e) {
     const { value, name } = e.target;
-    setProduct({
-      ...product,
+    setAccount({
+      ...Account,
       [name]: value,
     });
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const close = false;
-    if (dataProduct === "") {
-      await dispatch(addProduct(product));
-      dispatch(fetchDataProduct());
-      setProduct({
-        title: "",
-        description: "",
-        price: "",
-        stock: "",
-        images: "",
+    if (dataAccount === "") {
+      await dispatch(addUser(Account));
+      dispatch(fetchDataUser());
+      setAccount({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        password: "",
       });
     } else {
-      await dispatch(editeProduct(product, dataProduct.id));
-      dispatch(fetchDataProduct());
+      await dispatch(editeUser(Account, dataAccount.id));
+      dispatch(fetchDataUser());
     }
   };
 
@@ -66,71 +57,70 @@ export default function ModalAdd({ dataProduct = "", show, onHide }) {
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
         <Modal.Title>
-          {dataProduct ? "Edite Product" : "Add New Product"}
+          {dataAccount ? "Edite Account" : "Add New Account"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Title</Form.Label>
+            <Form.Label>First Name</Form.Label>
             <Form.Control
-              name="title"
+              name="firstName"
               type="text"
-              placeholder="Title..."
+              placeholder="First Name..."
               autoFocus
-              value={product.title}
+              value={Account.firstName}
               onChange={handleChange}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Price</Form.Label>
+            <Form.Label>Last Name</Form.Label>
             <Form.Control
-              name="price"
-              type="number"
-              placeholder="Price...."
-              autoFocus
-              value={product.price}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Stock</Form.Label>
-            <Form.Control
-              name="stock"
-              type="number"
-              placeholder="Stock..."
-              autoFocus
-              value={product.stock}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>image Link</Form.Label>
-            <Form.Control
-              name="images"
+              name="lastName"
               type="text"
-              placeholder="Image Link..."
+              placeholder="lastName...."
               autoFocus
-              value={product.images}
+              value={Account.lastName}
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Description</Form.Label>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Email</Form.Label>
             <Form.Control
-              as="textarea"
-              rows={3}
-              name="description"
-              placeholder="Description..."
-              value={product.description}
+              name="email"
+              type="text"
+              placeholder="email..."
+              autoFocus
+              value={Account.email}
               onChange={handleChange}
             />
-          </Form.Group>{" "}
-          {product.title &&
-          product.price &&
-          product.stock &&
-          product.images &&
-          product.description ? (
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              name="phone"
+              type="number"
+              placeholder="Phone Number..."
+              autoFocus
+              value={Account.phone}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Phone Number..."
+              autoFocus
+              value={Account.password}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          {Account.firstName &&
+          Account.lastName &&
+          Account.email &&
+          Account.phone ? (
             <Button type="submit" variant="primary" onClick={onHide}>
               Submit
             </Button>
