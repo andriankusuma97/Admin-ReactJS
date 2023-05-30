@@ -50,6 +50,7 @@ export default function AccountPage() {
             <th className="px-2">Last Name</th>
             <th className="px-3">Email</th>
             <th className="px-3 ">Phone Number</th>
+            <th className="px-3 ">Password</th>
             <th className="px-3 ">Actions</th>
           </tr>
         </thead>

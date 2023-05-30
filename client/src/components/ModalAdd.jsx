@@ -18,6 +18,8 @@ export default function ModalAdd({ dataProduct = "", show, onHide }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+ 
+
   const [product, setProduct] = useState({
     title: dataProduct.title,
     description: dataProduct.description,
@@ -25,6 +27,8 @@ export default function ModalAdd({ dataProduct = "", show, onHide }) {
     stock: dataProduct.stock,
     images: dataProduct.images,
   });
+
+   
 
   function handleChange(e) {
     const { value, name } = e.target;

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchDataUser,deleteUser } from "../store/action/actionUser";
 import ModalAddAccount from '../components/ModalAccount';
+import { BsEyeSlash } from "react-icons/bs";
+
 
 
 export default function RowUser({ data, idx }) {
@@ -13,6 +15,11 @@ export default function RowUser({ data, idx }) {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Membuat masking dengan bintang
+  const maskedPassword = data.password?.replace(/./g, '*');
+
 
   const handleEditeUser = async(e) => {
     try {
@@ -34,6 +41,14 @@ export default function RowUser({ data, idx }) {
       console.log(error);
     }
   };
+  const toggleShowPassword = (e) => {
+    e.preventDefault();
+    setShowPassword(true);
+  };
+  const toggleHidePassword = (e) => {
+    e.preventDefault();
+    setShowPassword(false);
+  };
 
   return (
     <>
@@ -43,6 +58,14 @@ export default function RowUser({ data, idx }) {
         <td className="px-3 ">{data?.lastName}</td>
         <td className="text-center ">{data?.email}</td>
         <td className="text-center align-self-center "> {data?.phone}</td>
+        <td className="text-center align-self-center "> {showPassword? data.password :maskedPassword} 
+
+        <a href="" className="text-decoration-none ms-3" onClick={ showPassword ? toggleHidePassword : toggleShowPassword }>
+          <BsEyeSlash className="text-dark"/>
+
+        </a>
+        
+        </td>
         <td className="text-center align-self-center  ">
           <a href="" onClick={handleEditeUser}>
             <BiPencil className="text-success" />

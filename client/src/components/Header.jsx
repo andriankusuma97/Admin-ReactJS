@@ -43,7 +43,7 @@ export default function Header() {
             <Dropdown.Item href="#/action-2">Dashboard</Dropdown.Item>
             <Link to={"/login"}>
               <Dropdown.Item className="border-top mt-3" href="#/action-3">
-                <CgLogOut className="fs-5" /> Log Out
+                <CgLogOut className="fs-5 text-danger" /> Log Out
               </Dropdown.Item>
             </Link>
           </Dropdown.Menu>

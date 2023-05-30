@@ -19,7 +19,7 @@ export default function Sidebar() {
       <ul className="list-group mt-4">
         <Link className="text-decoration-none text-dark " to={"/"}>
           <li className="list-group-item mt-2 hover">
-            <RiDashboardLine /> Dashboard
+            <RiDashboardLine className="text-success" /> Dashboard
           </li>
         </Link>
 
@@ -32,7 +32,7 @@ export default function Sidebar() {
         <Link className="text-decoration-none text-dark" to={"/account"}>
           <li className="list-group-item mt-2 hover">
             {" "}
-            <MdSwitchAccount /> Account
+            <MdSwitchAccount className="text-danger" /> Account
           </li>
         </Link>
       </ul>

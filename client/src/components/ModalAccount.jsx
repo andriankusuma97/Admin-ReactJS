@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import InputMask from 'react-input-mask';
+
 
 export default function ModalAddAccount({ dataAccount = "", show, onHide }) {
   const dispatch = useDispatch();
@@ -18,6 +20,22 @@ export default function ModalAddAccount({ dataAccount = "", show, onHide }) {
     password: dataAccount.password,
   });
 
+  // const [lastName, setLastName] = useState('');
+
+  // const handleLastNameChange = (event) => {
+  //   const input = event.target.value;
+  //   const maskedInput = maskLastName(input);
+  //   setLastName(maskedInput);
+  // };
+
+  // const maskLastName = (input) => {
+  //   const maskedValue = input.replace(/./g, '*');
+  //   return maskedValue;
+  // };
+
+  // masked lastname
+  // const maskedLastName = Account.lastName?.replace(/./g, '*');
+  // console.log(lastName,"<<< ini lastname")
   function handleChange(e) {
     const { value, name } = e.target;
     setAccount({
@@ -77,7 +95,7 @@ export default function ModalAddAccount({ dataAccount = "", show, onHide }) {
             <Form.Label>Last Name</Form.Label>
             <Form.Control
               name="lastName"
-              type="text"
+              type={dataAccount ? "text":"password"}
               placeholder="lastName...."
               autoFocus
               value={Account.lastName}
@@ -96,10 +114,15 @@ export default function ModalAddAccount({ dataAccount = "", show, onHide }) {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <div>
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control
+
+            </div>
+            <InputMask
+            className="formInput"
+              mask='(+99) 999 999 9999'
               name="phone"
-              type="number"
+              type="text"
               placeholder="Phone Number..."
               autoFocus
               value={Account.phone}
@@ -111,7 +134,7 @@ export default function ModalAddAccount({ dataAccount = "", show, onHide }) {
             <Form.Control
               name="password"
               type="password"
-              placeholder="Phone Number..."
+              placeholder="Password..."
               autoFocus
               value={Account.password}
               onChange={handleChange}
